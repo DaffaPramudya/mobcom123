@@ -127,7 +127,7 @@ fun CalculatorScreen() {
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier
-                .padding(bottom = 8.dp)  // beri jarak kecil jika mau
+                .padding(bottom = 8.dp)  // beri jarak kecil
         ) {
             items(buttons) { label ->
                 val bgColor = when {
@@ -298,7 +298,7 @@ fun evalPostfix(tokens: List<String>): Double {
                         val radians = Math.toRadians(a)
                         val cos = Math.cos(radians)
                         if (Math.abs(cos) < 1e-10) {
-                            Double.NaN // biar nanti ditandai undefined oleh checkUndefined
+                            Double.NaN // agar nanti ditandai undefined oleh checkUndefined
                         } else {
                             Math.tan(radians)
                         }
@@ -408,13 +408,12 @@ fun checkUndefined(expr: String, result: Double): String? {
     return null
 }
 
-// Format hasil agar bisa ditampilkan di kalkulator tanpa melebihi batas display
 fun formatResult(value: Double): String {
     // kalau hasil sangat kecil, anggap nol
     if (Math.abs(value) < 1e-10) return "0"
 
-    // tampilkan max 10 digit desimal, lalu rapikan nol di belakang
-    return String.format("%.10f", value)
+    // tampilkan max 15 digit desimal, lalu rapikan nol di belakang
+    return String.format("%.15f", value)
         .trimEnd('0')
         .trimEnd('.')
 }
@@ -481,7 +480,7 @@ fun CalculatorButton(
 ) {
     Button(
         onClick = onClick,
-        modifier = modifier.height(60.dp),
+        modifier = modifier.height(50.dp),
         shape = RoundedCornerShape(16.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = backgroundColor,
@@ -491,7 +490,7 @@ fun CalculatorButton(
     ) {
         Text(
             text = label,
-            fontSize = 18.sp
+            fontSize = 16.sp
         )
     }
 }
